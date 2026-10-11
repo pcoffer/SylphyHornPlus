@@ -1798,7 +1798,7 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Settings に類似しているローカライズされた文字列を検索します。
+        ///   SylphyHornPlus Settings に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_Title {
             get {
