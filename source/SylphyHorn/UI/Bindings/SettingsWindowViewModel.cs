@@ -810,6 +810,8 @@ namespace SylphyHorn.UI.Bindings
 
 		public CreationWallpaperSettingsViewModel CreationWallpapers { get; }
 
+		public TaskbarSettingsViewModel Taskbar { get; }
+
 		internal SettingsWindowViewModel(
 			HookService hookService,
 			DesktopTransitionRuntime desktopRuntime,
@@ -844,6 +846,15 @@ namespace SylphyHorn.UI.Bindings
 				ProductInfo.IsNameSupportBuild,
 				!ProductInfo.IsWallpaperSupportBuild);
 			this.CreationWallpapers.AddTo(this);
+			this.Taskbar = new TaskbarSettingsViewModel(
+				Settings.Taskbar,
+				Fonts.SystemFontFamilies.Select(family => family.Source),
+				() => WindowsTheme.SystemTheme.Current == Theme.Light ? Colors.Black : Colors.White,
+#if NETFRAMEWORK
+				false);
+#else
+				ProductInfo.IsWindows11OrLater);
+#endif
 			ShortcutKeyBox.HookService = hookService;
 			MouseShortcutBox.HookService = hookService;
 
@@ -1072,7 +1083,11 @@ namespace SylphyHorn.UI.Bindings
 			return response != null && response.Length > 0 ? response[0] : null;
 		}
 
-		internal void RefreshAfterExternalSettings() => this.NotifyOfAllPropertiesChanged();
+		internal void RefreshAfterExternalSettings()
+		{
+			this.NotifyOfAllPropertiesChanged();
+			this.Taskbar.Refresh();
+		}
 
 		internal void RefreshAfterExternalStartup(bool normalRegistered, bool elevatedRegistered)
 		{

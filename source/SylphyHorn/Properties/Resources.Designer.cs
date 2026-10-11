@@ -2436,5 +2436,167 @@ namespace SylphyHorn.Properties {
                 return ResourceManager.GetString("Placement_OutcomeMonitorPaused", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taskbar.
+        /// </summary>
+        public static string Taskbar_TabTitle {
+            get {
+                return ResourceManager.GetString("Taskbar_TabTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Desktop name in the taskbar.
+        /// </summary>
+        public static string Taskbar_Title {
+            get {
+                return ResourceManager.GetString("Taskbar_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The taskbar indicator needs Windows 11 and the .NET build of SylphyHornPlus..
+        /// </summary>
+        public static string Taskbar_Unavailable {
+            get {
+                return ResourceManager.GetString("Taskbar_Unavailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Placement.
+        /// </summary>
+        public static string Taskbar_PlacementHeader {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Position:.
+        /// </summary>
+        public static string Taskbar_PlacementLabel {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left of the Start button.
+        /// </summary>
+        public static string Taskbar_PlacementBeforeStart {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementBeforeStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left of the notification area.
+        /// </summary>
+        public static string Taskbar_PlacementBeforeTray {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementBeforeTray", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Left edge of the taskbar.
+        /// </summary>
+        public static string Taskbar_PlacementLeftEdge {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementLeftEdge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic (the wider gap).
+        /// </summary>
+        public static string Taskbar_PlacementAuto {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementAuto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Start button and left edge positions need a centered taskbar. Otherwise the indicator sits left of the notification area..
+        /// </summary>
+        public static string Taskbar_PlacementHint {
+            get {
+                return ResourceManager.GetString("Taskbar_PlacementHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string Taskbar_FontHeader {
+            get {
+                return ResourceManager.GetString("Taskbar_FontHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font family:.
+        /// </summary>
+        public static string Taskbar_FontFamily {
+            get {
+                return ResourceManager.GetString("Taskbar_FontFamily", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Default).
+        /// </summary>
+        public static string Taskbar_DefaultFont {
+            get {
+                return ResourceManager.GetString("Taskbar_DefaultFont", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size:.
+        /// </summary>
+        public static string Taskbar_FontSize {
+            get {
+                return ResourceManager.GetString("Taskbar_FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text color.
+        /// </summary>
+        public static string Taskbar_ColorHeader {
+            get {
+                return ResourceManager.GetString("Taskbar_ColorHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic (white on a dark taskbar, black on a light one).
+        /// </summary>
+        public static string Taskbar_AutomaticColor {
+            get {
+                return ResourceManager.GetString("Taskbar_AutomaticColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color:.
+        /// </summary>
+        public static string Taskbar_CustomColor {
+            get {
+                return ResourceManager.GetString("Taskbar_CustomColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose....
+        /// </summary>
+        public static string Taskbar_ChooseColor {
+            get {
+                return ResourceManager.GetString("Taskbar_ChooseColor", resourceCulture);
+            }
+        }
     }
 }

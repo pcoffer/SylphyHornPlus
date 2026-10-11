@@ -1,0 +1,114 @@
+﻿<UserControl x:Class="SylphyHorn.UI.TaskbarSettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:metro="http://schemes.grabacr.net/winfx/2014/controls">
+	<UserControl.Resources>
+		<ResourceDictionary>
+			<ResourceDictionary.MergedDictionaries>
+				<ResourceDictionary Source="pack://application:,,,/SylphyHorn;component/UI/SettingsPageResources.xaml" />
+			</ResourceDictionary.MergedDictionaries>
+			<Style x:Key="Label" TargetType="TextBlock">
+				<Setter Property="VerticalAlignment" Value="Center" />
+				<Setter Property="Margin" Value="0,0,8,0" />
+			</Style>
+		</ResourceDictionary>
+	</UserControl.Resources>
+	<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+		<!-- See AppPlacementSettingsView: templated text would otherwise inherit the selected tab item's accent foreground. -->
+		<StackPanel Margin="16,0,16,16" Focusable="True" TextElement.Foreground="{DynamicResource ForegroundBrushKey}">
+			<TextBlock Text="{Binding Text[Title]}" Style="{DynamicResource HeaderStyleKey}" />
+			<TextBlock Text="{Binding Text[Unavailable]}"
+					   Style="{StaticResource InlineMessage}"
+					   Visibility="{Binding IsUnavailable, Converter={StaticResource Visible}}"
+					   Margin="8,0,0,0" />
+
+			<StackPanel Style="{StaticResource Section}">
+				<TextBlock Text="{Binding Text[PlacementHeader]}" Style="{DynamicResource HeaderStyleKey}" />
+				<Grid Margin="8,0,0,0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="110" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<TextBlock Text="{Binding Text[PlacementLabel]}" Style="{StaticResource Label}" />
+					<metro:PromptComboBox Grid.Column="1"
+										  ItemsSource="{Binding Placements}"
+										  DisplayMemberPath="Display"
+										  SelectedValuePath="Value"
+										  SelectedValue="{Binding Placement, Mode=TwoWay}"
+										  Prompt=""
+										  IsReadOnly="True"
+										  MinWidth="280"
+										  HorizontalAlignment="Left" />
+				</Grid>
+				<TextBlock Text="{Binding Text[PlacementHint]}" Style="{StaticResource InlineMessage}" Margin="8,6,0,0" />
+			</StackPanel>
+
+			<StackPanel Style="{StaticResource Section}">
+				<TextBlock Text="{Binding Text[FontHeader]}" Style="{DynamicResource HeaderStyleKey}" />
+				<Grid Margin="8,0,0,0">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="110" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition />
+						<RowDefinition Height="8" />
+						<RowDefinition />
+					</Grid.RowDefinitions>
+					<TextBlock Text="{Binding Text[FontFamily]}" Style="{StaticResource Label}" />
+					<metro:PromptComboBox Grid.Column="1"
+										  ItemsSource="{Binding FontFamilies}"
+										  DisplayMemberPath="Display"
+										  SelectedValuePath="Value"
+										  SelectedValue="{Binding FontFamily, Mode=TwoWay}"
+										  Prompt=""
+										  IsReadOnly="True"
+										  MinWidth="280"
+										  HorizontalAlignment="Left" />
+					<TextBlock Grid.Row="2" Text="{Binding Text[FontSize]}" Style="{StaticResource Label}" />
+					<metro:PromptComboBox Grid.Row="2"
+										  Grid.Column="1"
+										  ItemsSource="{Binding FontSizes}"
+										  SelectedItem="{Binding FontSize, Mode=TwoWay}"
+										  Prompt=""
+										  IsReadOnly="True"
+										  MinWidth="70"
+										  HorizontalAlignment="Left" />
+				</Grid>
+			</StackPanel>
+
+			<StackPanel Style="{StaticResource Section}">
+				<TextBlock Text="{Binding Text[ColorHeader]}" Style="{DynamicResource HeaderStyleKey}" />
+				<CheckBox IsChecked="{Binding IsAutomaticColor, Mode=TwoWay}" Margin="8,0,0,8">
+					<TextBlock Text="{Binding Text[AutomaticColor]}" />
+				</CheckBox>
+				<Grid Margin="8,0,0,0"
+					  IsEnabled="{Binding IsAutomaticColor, Converter={StaticResource ReverseBooleanConverter}}">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="110" />
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="8" />
+						<ColumnDefinition Width="Auto" />
+						<ColumnDefinition Width="8" />
+						<ColumnDefinition Width="Auto" />
+					</Grid.ColumnDefinitions>
+					<TextBlock Text="{Binding Text[CustomColor]}" Style="{StaticResource Label}" />
+					<metro:PromptTextBox Grid.Column="1"
+										 Text="{Binding TextColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+										 Prompt="#RRGGBB"
+										 Width="90" />
+					<Border Grid.Column="3"
+							Width="24"
+							Height="24"
+							Background="{Binding TextColorPreview}"
+							BorderBrush="{DynamicResource BorderBrushKey}"
+							BorderThickness="1" />
+					<Button Grid.Column="5"
+							Content="{Binding Text[ChooseColor]}"
+							Click="ChooseColor"
+							MinWidth="80" />
+				</Grid>
+			</StackPanel>
+		</StackPanel>
+	</ScrollViewer>
+</UserControl>

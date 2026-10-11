@@ -16,10 +16,12 @@ namespace SylphyHorn.UI
 		internal FrameworkElement ContentRoot => this.Root;
 
 		// Returns the width the text needs, in device-independent pixels.
-		internal double Update(string text, Brush foreground)
+		internal double Update(string text, Brush foreground, FontFamily fontFamily, double fontSize)
 		{
 			this.Label.Text = text;
 			this.Label.Foreground = foreground;
+			this.Label.FontFamily = fontFamily;
+			this.Label.FontSize = fontSize;
 			this.Label.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
 			return Math.Ceiling(this.Label.DesiredSize.Width);
 		}

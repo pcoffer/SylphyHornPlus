@@ -7,6 +7,7 @@ using System.Windows.Threading;
 using Deskband11Lib.Core;
 using Deskband11Lib.Wpf;
 using MetroRadiance.Platform;
+using SylphyHorn.Serialization;
 using SylphyHorn.UI;
 
 namespace SylphyHorn.Services
@@ -16,19 +17,24 @@ namespace SylphyHorn.Services
 	[SupportedOSPlatform("windows10.0.22000.0")]
 	internal sealed class Deskband11TaskbarIndicatorHost : ITaskbarIndicatorHost
 	{
+		// Width limit at the default font size; larger fonts get proportionally more room.
 		private const double _maxWidth = 320;
 		private static readonly TimeSpan _recreationDelay = TimeSpan.FromSeconds(1);
 
 		private readonly Dispatcher _dispatcher = Dispatcher.CurrentDispatcher;
+		private readonly TaskbarSettings _settings;
+		private readonly IDisposable _settingsSubscription;
 		private TaskbarIndicatorWindow _window;
 		private TaskbarContentHost _host;
 		private TaskbarContentHostOptions _options;
 		private string _text = string.Empty;
 		private bool _disposed;
 
-		internal Deskband11TaskbarIndicatorHost()
+		internal Deskband11TaskbarIndicatorHost(TaskbarSettings settings)
 		{
+			this._settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			WindowsTheme.SystemTheme.Changed += this.OnSystemThemeChanged;
+			this._settingsSubscription = SettingsService.ObserveTaskbarIndicator(settings, this.RequestApply);
 			this.Create();
 		}
 
@@ -44,7 +50,6 @@ namespace SylphyHorn.Services
 			var window = new TaskbarIndicatorWindow();
 			var options = new TaskbarContentHostOptions
 			{
-				Placement = TaskbarContentPlacement.BeforeNotificationArea,
 				AnimateLayoutChanges = false,
 				// Each refresh scans the taskbar with UI Automation; the default 500 ms costs about 5% of a core.
 				// Text changes refresh the layout themselves, so this only delays following the tray area.
@@ -93,9 +98,36 @@ namespace SylphyHorn.Services
 		private void Apply()
 		{
 			if (this._window == null) return;
-			var foreground = WindowsTheme.SystemTheme.Current == Theme.Light ? Brushes.Black : Brushes.White;
-			this._options.PreferredWidth = Math.Min(_maxWidth, this._window.Update(this._text, foreground));
+
+			var fontSize = TaskbarIndicatorAppearance.ClampFontSize(this._settings.FontSize.Value);
+			var fontFamily = new FontFamily(TaskbarIndicatorAppearance.FontFamilyOrDefault(this._settings.FontFamily.Value));
+			this._options.Placement = ToPlacement(TaskbarIndicatorAppearance.PlacementOrDefault(this._settings.Placement.Value));
+
+			var width = this._window.Update(this._text, this.ResolveForeground(), fontFamily, fontSize);
+			this._options.PreferredWidth = Math.Min(_maxWidth * Math.Max(1.0, fontSize / (double)TaskbarSettings.FontSizeDefaultValue), width);
 			if (this._host.IsAttached) this._host.RefreshLayout();
+		}
+
+		private Brush ResolveForeground()
+		{
+			if (!TaskbarIndicatorAppearance.TryParseColor(this._settings.TextColor.Value, out var color))
+			{
+				return WindowsTheme.SystemTheme.Current == Theme.Light ? Brushes.Black : Brushes.White;
+			}
+			var brush = new SolidColorBrush(color);
+			brush.Freeze();
+			return brush;
+		}
+
+		private static TaskbarContentPlacement ToPlacement(TaskbarIndicatorPlacement placement)
+		{
+			switch (placement)
+			{
+				case TaskbarIndicatorPlacement.Auto: return TaskbarContentPlacement.Auto;
+				case TaskbarIndicatorPlacement.LeftEdge: return TaskbarContentPlacement.LeftEdge;
+				case TaskbarIndicatorPlacement.BeforeNotificationArea: return TaskbarContentPlacement.BeforeNotificationArea;
+				default: return TaskbarContentPlacement.BeforeStartButton;
+			}
 		}
 
 		private void Release()
@@ -109,9 +141,11 @@ namespace SylphyHorn.Services
 			if (window.IsWindowAlive()) window.Close();
 		}
 
-		private void OnSystemThemeChanged(object sender, Theme e)
+		private void OnSystemThemeChanged(object sender, Theme e) => this.RequestApply();
+
+		private void RequestApply()
 		{
-			if (this._dispatcher.HasShutdownStarted) return;
+			if (this._disposed || this._dispatcher.HasShutdownStarted) return;
 			this._dispatcher.BeginInvoke(new Action(this.Apply));
 		}
 
@@ -120,6 +154,7 @@ namespace SylphyHorn.Services
 			if (this._disposed) return;
 			this._disposed = true;
 			WindowsTheme.SystemTheme.Changed -= this.OnSystemThemeChanged;
+			this._settingsSubscription.Dispose();
 			this.Release();
 		}
 	}

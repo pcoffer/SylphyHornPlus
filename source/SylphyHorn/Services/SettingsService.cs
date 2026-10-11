@@ -50,6 +50,16 @@ namespace SylphyHorn.Services
 			return subscriptions;
 		}
 
+		internal static IDisposable ObserveTaskbarIndicator(TaskbarSettings settings, Action changed)
+		{
+			var subscriptions = new DisposableCollection();
+			subscriptions.Add(ObserveChange(settings.FontFamily, changed));
+			subscriptions.Add(ObserveChange(settings.FontSize, changed));
+			subscriptions.Add(ObserveChange(settings.TextColor, changed));
+			subscriptions.Add(ObserveChange(settings.Placement, changed));
+			return subscriptions;
+		}
+
 		internal static IDisposable ObserveWallpaperSettings(GeneralSettings settings, Action changed)
 			=> ObserveChange(settings.ChangeBackgroundEachDesktop, changed);
 

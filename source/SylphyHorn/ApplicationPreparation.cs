@@ -326,7 +326,7 @@ namespace SylphyHorn
 			// The taskbar indicator is optional: failing to host it must not stop the application.
 			try
 			{
-				new DesktopIndicatorService(new Deskband11TaskbarIndicatorHost()).AddTo(this._disposable).BindDesktopRuntime(runtime);
+				new DesktopIndicatorService(new Deskband11TaskbarIndicatorHost(Settings.Taskbar)).AddTo(this._disposable).BindDesktopRuntime(runtime);
 			}
 			catch (Exception ex)
 			{

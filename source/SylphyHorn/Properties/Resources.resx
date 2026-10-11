@@ -966,4 +966,58 @@
   <data name="CreationWallpaper_ConfigurationChanged" xml:space="preserve">
     <value>Entries were changed elsewhere, and an unsaved edit to a changed entry was discarded. Review the current entries.</value>
   </data>
+  <data name="Taskbar_TabTitle" xml:space="preserve">
+    <value>Taskbar</value>
+  </data>
+  <data name="Taskbar_Title" xml:space="preserve">
+    <value>Desktop name in the taskbar</value>
+  </data>
+  <data name="Taskbar_Unavailable" xml:space="preserve">
+    <value>The taskbar indicator needs Windows 11 and the .NET build of SylphyHornPlus.</value>
+  </data>
+  <data name="Taskbar_PlacementHeader" xml:space="preserve">
+    <value>Placement</value>
+  </data>
+  <data name="Taskbar_PlacementLabel" xml:space="preserve">
+    <value>Position:</value>
+  </data>
+  <data name="Taskbar_PlacementBeforeStart" xml:space="preserve">
+    <value>Left of the Start button</value>
+  </data>
+  <data name="Taskbar_PlacementBeforeTray" xml:space="preserve">
+    <value>Left of the notification area</value>
+  </data>
+  <data name="Taskbar_PlacementLeftEdge" xml:space="preserve">
+    <value>Left edge of the taskbar</value>
+  </data>
+  <data name="Taskbar_PlacementAuto" xml:space="preserve">
+    <value>Automatic (the wider gap)</value>
+  </data>
+  <data name="Taskbar_PlacementHint" xml:space="preserve">
+    <value>The Start button and left edge positions need a centered taskbar. Otherwise the indicator sits left of the notification area.</value>
+  </data>
+  <data name="Taskbar_FontHeader" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="Taskbar_FontFamily" xml:space="preserve">
+    <value>Font family:</value>
+  </data>
+  <data name="Taskbar_DefaultFont" xml:space="preserve">
+    <value>(Default)</value>
+  </data>
+  <data name="Taskbar_FontSize" xml:space="preserve">
+    <value>Size:</value>
+  </data>
+  <data name="Taskbar_ColorHeader" xml:space="preserve">
+    <value>Text color</value>
+  </data>
+  <data name="Taskbar_AutomaticColor" xml:space="preserve">
+    <value>Automatic (white on a dark taskbar, black on a light one)</value>
+  </data>
+  <data name="Taskbar_CustomColor" xml:space="preserve">
+    <value>Color:</value>
+  </data>
+  <data name="Taskbar_ChooseColor" xml:space="preserve">
+    <value>Choose...</value>
+  </data>
 </root>

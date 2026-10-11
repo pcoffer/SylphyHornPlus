@@ -283,6 +283,14 @@
 
 			<TabItem>
 				<TabItem.Header>
+					<TextBlock Text="{Binding Taskbar.Text[TabTitle]}"
+							   Style="{DynamicResource TabitemStyleKey}" />
+				</TabItem.Header>
+				<ui:TaskbarSettingsView DataContext="{Binding Taskbar}" />
+			</TabItem>
+
+			<TabItem>
+				<TabItem.Header>
 					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Desktop, StringFormat='{}{0} 1'}"
 							   Style="{DynamicResource TabitemStyleKey}" />
 				</TabItem.Header>
