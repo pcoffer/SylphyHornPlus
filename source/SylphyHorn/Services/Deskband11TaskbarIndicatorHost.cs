@@ -28,6 +28,7 @@ namespace SylphyHorn.Services
 		private TaskbarContentHost _host;
 		private TaskbarContentHostOptions _options;
 		private string _text = string.Empty;
+		private bool _recreating;
 		private bool _disposed;
 
 		internal Deskband11TaskbarIndicatorHost(TaskbarSettings settings)
@@ -35,7 +36,7 @@ namespace SylphyHorn.Services
 			this._settings = settings ?? throw new ArgumentNullException(nameof(settings));
 			WindowsTheme.SystemTheme.Changed += this.OnSystemThemeChanged;
 			this._settingsSubscription = SettingsService.ObserveTaskbarIndicator(settings, this.RequestApply);
-			this.Create();
+			if (settings.Enabled.Value) this.Create();
 		}
 
 		public void SetText(string text)
@@ -81,10 +82,12 @@ namespace SylphyHorn.Services
 		private async void OnTaskbarWindowRecreationRequired(object sender, EventArgs e)
 		{
 			if (!ReferenceEquals(sender, this._host)) return;
+			this._recreating = true;
 			this.Release();
 
 			await Task.Delay(_recreationDelay);
-			if (this._disposed || this._host != null) return;
+			this._recreating = false;
+			if (this._disposed || this._host != null || !this._settings.Enabled.Value) return;
 			try
 			{
 				this.Create();
@@ -95,9 +98,22 @@ namespace SylphyHorn.Services
 			}
 		}
 
+		// Brings the taskbar in line with the settings and the current text: removes the indicator
+		// when it is turned off, creates it when it is turned on, and otherwise restyles it.
 		private void Apply()
 		{
-			if (this._window == null) return;
+			if (this._disposed) return;
+			if (!this._settings.Enabled.Value)
+			{
+				if (this._window != null) this.Release();
+				return;
+			}
+			if (this._window == null)
+			{
+				// A pending recreation creates the window itself once the taskbar has settled.
+				if (!this._recreating) this.Create();
+				return;
+			}
 
 			var fontSize = TaskbarIndicatorAppearance.ClampFontSize(this._settings.FontSize.Value);
 			var fontFamily = new FontFamily(TaskbarIndicatorAppearance.FontFamilyOrDefault(this._settings.FontFamily.Value));

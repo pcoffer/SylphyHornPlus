@@ -15,6 +15,8 @@ namespace SylphyHorn.Tests
 		{
 			var settings = new TaskbarSettings(await CreateProviderAsync());
 
+			Assert.Equal("TaskbarSettings.Enabled", settings.Enabled.Key);
+			Assert.True(settings.Enabled.Value);
 			Assert.Equal("TaskbarSettings.FontFamily", settings.FontFamily.Key);
 			Assert.Equal("TaskbarSettings.FontSize", settings.FontSize.Key);
 			Assert.Equal("TaskbarSettings.TextColor", settings.TextColor.Key);
@@ -74,6 +76,10 @@ namespace SylphyHorn.Tests
 
 			viewModel.FontFamily = null;
 			Assert.Null(settings.FontFamily.Value);
+
+			Assert.True(viewModel.IsEnabled);
+			viewModel.IsEnabled = false;
+			Assert.False(settings.Enabled.Value);
 		}
 
 		[Fact]

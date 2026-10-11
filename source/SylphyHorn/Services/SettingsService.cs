@@ -53,6 +53,7 @@ namespace SylphyHorn.Services
 		internal static IDisposable ObserveTaskbarIndicator(TaskbarSettings settings, Action changed)
 		{
 			var subscriptions = new DisposableCollection();
+			subscriptions.Add(ObserveChange(settings.Enabled, changed));
 			subscriptions.Add(ObserveChange(settings.FontFamily, changed));
 			subscriptions.Add(ObserveChange(settings.FontSize, changed));
 			subscriptions.Add(ObserveChange(settings.TextColor, changed));

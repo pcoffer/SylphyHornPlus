@@ -55,6 +55,17 @@ namespace SylphyHorn.UI.Bindings
 			this._colorText = this.StoredColorOrNull();
 		}
 
+		public bool IsEnabled
+		{
+			get => this._settings.Enabled.Value;
+			set
+			{
+				if (this._settings.Enabled.Value == value) return;
+				this._settings.Enabled.Value = value;
+				this.OnPropertyChanged();
+			}
+		}
+
 		public string FontFamily
 		{
 			get => string.IsNullOrWhiteSpace(this._settings.FontFamily.Value) ? null : this._settings.FontFamily.Value;

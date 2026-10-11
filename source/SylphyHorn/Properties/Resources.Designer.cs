@@ -2510,7 +2510,7 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Taskbar.
+        ///   Looks up a localized string similar to Taskbar &amp; tray.
         /// </summary>
         public static string Taskbar_TabTitle {
             get {
@@ -2519,11 +2519,56 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Desktop name in the taskbar.
+        ///   Looks up a localized string similar to In the taskbar.
         /// </summary>
         public static string Taskbar_Title {
             get {
                 return ResourceManager.GetString("Taskbar_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the desktop number and name in the taskbar.
+        /// </summary>
+        public static string Taskbar_Enable {
+            get {
+                return ResourceManager.GetString("Taskbar_Enable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Text color:.
+        /// </summary>
+        public static string Taskbar_ColorLabel {
+            get {
+                return ResourceManager.GetString("Taskbar_ColorLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In the tray icon.
+        /// </summary>
+        public static string Taskbar_TraySection {
+            get {
+                return ResourceManager.GetString("Taskbar_TraySection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show the desktop number in the tray icon.
+        /// </summary>
+        public static string Taskbar_TrayShow {
+            get {
+                return ResourceManager.GetString("Taskbar_TrayShow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current number only, without the total.
+        /// </summary>
+        public static string Taskbar_TrayNumberOnly {
+            get {
+                return ResourceManager.GetString("Taskbar_TrayNumberOnly", resourceCulture);
             }
         }
         
@@ -2533,15 +2578,6 @@ namespace SylphyHorn.Properties {
         public static string Taskbar_Unavailable {
             get {
                 return ResourceManager.GetString("Taskbar_Unavailable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Placement.
-        /// </summary>
-        public static string Taskbar_PlacementHeader {
-            get {
-                return ResourceManager.GetString("Taskbar_PlacementHeader", resourceCulture);
             }
         }
         
@@ -2600,15 +2636,6 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Font.
-        /// </summary>
-        public static string Taskbar_FontHeader {
-            get {
-                return ResourceManager.GetString("Taskbar_FontHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Font family:.
         /// </summary>
         public static string Taskbar_FontFamily {
@@ -2636,29 +2663,11 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Text color.
-        /// </summary>
-        public static string Taskbar_ColorHeader {
-            get {
-                return ResourceManager.GetString("Taskbar_ColorHeader", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Automatic (white on a dark taskbar, black on a light one).
         /// </summary>
         public static string Taskbar_AutomaticColor {
             get {
                 return ResourceManager.GetString("Taskbar_AutomaticColor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Color:.
-        /// </summary>
-        public static string Taskbar_CustomColor {
-            get {
-                return ResourceManager.GetString("Taskbar_CustomColor", resourceCulture);
             }
         }
         

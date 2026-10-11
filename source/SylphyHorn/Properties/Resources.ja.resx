@@ -992,16 +992,28 @@
     <value>別の操作で登録が変更されたため、その登録の未保存の編集を取り消しました。現在の登録を確認してください。</value>
   </data>
   <data name="Taskbar_TabTitle" xml:space="preserve">
-    <value>タスク バー</value>
+    <value>タスク バーとトレイ</value>
   </data>
   <data name="Taskbar_Title" xml:space="preserve">
-    <value>タスク バーのデスクトップ名</value>
+    <value>タスク バー</value>
+  </data>
+  <data name="Taskbar_Enable" xml:space="preserve">
+    <value>タスク バーにデスクトップの番号と名前を表示する</value>
+  </data>
+  <data name="Taskbar_ColorLabel" xml:space="preserve">
+    <value>文字の色:</value>
+  </data>
+  <data name="Taskbar_TraySection" xml:space="preserve">
+    <value>トレイ アイコン</value>
+  </data>
+  <data name="Taskbar_TrayShow" xml:space="preserve">
+    <value>トレイ アイコンにデスクトップの番号を表示する</value>
+  </data>
+  <data name="Taskbar_TrayNumberOnly" xml:space="preserve">
+    <value>現在の番号のみ表示する (総数なし)</value>
   </data>
   <data name="Taskbar_Unavailable" xml:space="preserve">
     <value>タスク バーのインジケーターには Windows 11 と .NET 版の SylphyHornPlus が必要です。</value>
-  </data>
-  <data name="Taskbar_PlacementHeader" xml:space="preserve">
-    <value>配置</value>
   </data>
   <data name="Taskbar_PlacementLabel" xml:space="preserve">
     <value>位置:</value>
@@ -1021,9 +1033,6 @@
   <data name="Taskbar_PlacementHint" xml:space="preserve">
     <value>スタート ボタンと左端の位置は、タスク バーが中央揃えの場合のみ使用できます。それ以外の場合は通知領域の左に表示されます。</value>
   </data>
-  <data name="Taskbar_FontHeader" xml:space="preserve">
-    <value>フォント</value>
-  </data>
   <data name="Taskbar_FontFamily" xml:space="preserve">
     <value>フォント ファミリ:</value>
   </data>
@@ -1033,14 +1042,8 @@
   <data name="Taskbar_FontSize" xml:space="preserve">
     <value>サイズ:</value>
   </data>
-  <data name="Taskbar_ColorHeader" xml:space="preserve">
-    <value>文字の色</value>
-  </data>
   <data name="Taskbar_AutomaticColor" xml:space="preserve">
     <value>自動 (暗いタスク バーでは白、明るいタスク バーでは黒)</value>
-  </data>
-  <data name="Taskbar_CustomColor" xml:space="preserve">
-    <value>色:</value>
   </data>
   <data name="Taskbar_ChooseColor" xml:space="preserve">
     <value>選択...</value>
