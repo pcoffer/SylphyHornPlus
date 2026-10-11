@@ -16,8 +16,8 @@
 				   d:DataContext="{d:DesignInstance bindings:SettingsWindowViewModel}"
 				   Icon="/SylphyHorn;component/.assets/app.white.ico"
 				   Title="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Title}"
-				   Width="760"
-				   Height="760"
+				   Width="810"
+				   Height="840"
 				   Background="{DynamicResource ThemeBrushKey}"
 				   Foreground="{DynamicResource ActiveForegroundBrushKey}"
 				   FontFamily="Segoe UI, Meiryo UI"
@@ -172,35 +172,6 @@
 						</StackPanel>
 						<Border Height="8" />
 
-						<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification}"
-								   Style="{DynamicResource HeaderStyleKey}" />
-						<StackPanel Margin="8,0,0,0">
-							<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=NotificationWhenSwitchedDesktop.Value, Mode=TwoWay}">
-								<TextBlock>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Display, Mode=OneWay}" />
-								</TextBlock>
-							</CheckBox>
-							<TextBlock Margin="21,0,0,0">
-								<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Display_Duration, Mode=OneWay}" />
-								<InlineUIContainer>
-									<metro:PromptTextBox Text="{Binding Source={x:Static serialization:Settings.General}, Path=NotificationDuration.Value, Mode=TwoWay}"
-														 Prompt=""
-														 Width="60"
-														 Margin="2,2,2,-7"
-														 IsEnabled="{Binding Source={x:Static serialization:Settings.General}, Path=NotificationWhenSwitchedDesktop.Value, Mode=TwoWay}" />
-								</InlineUIContainer>
-								<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Display_Duration_Milliseconds, Mode=OneWay}" />
-							</TextBlock>
-						</StackPanel>
-						<StackPanel Margin="8,8,0,0">
-							<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=AlwaysShowDesktopNotification.Value, Mode=TwoWay}">
-								<TextBlock>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_AlwaysShowDesktop, Mode=OneWay}" />
-								</TextBlock>
-							</CheckBox>
-						</StackPanel>
-						<Border Height="8" />
-
 						<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_TrayIcon}"
 								   Style="{DynamicResource HeaderStyleKey}" />
 						<StackPanel Margin="8,0,0,0">
@@ -293,7 +264,7 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Desktop, StringFormat='{}{0} 1'}"
+					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Tab_Desktops}"
 							   Style="{DynamicResource TabitemStyleKey}" />
 				</TabItem.Header>
 
@@ -614,7 +585,7 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Desktop, StringFormat='{}{0} 2'}"
+					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Tab_AppPlacement}"
 							   Style="{DynamicResource TabitemStyleKey}" />
 				</TabItem.Header>
 				<ui:AppPlacementSettingsView DataContext="{Binding AppPlacement}" />
@@ -622,7 +593,7 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Desktop, StringFormat='{}{0} 3'}"
+					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Tab_AutoClose}"
 							   Style="{DynamicResource TabitemStyleKey}" />
 				</TabItem.Header>
 				<ui:DesktopAutoCloseSettingsView DataContext="{Binding AppPlacement}" />
@@ -630,7 +601,7 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Desktop, StringFormat='{}{0} 4'}"
+					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Tab_NewDesktopWallpaper}"
 							   Style="{DynamicResource TabitemStyleKey}" />
 				</TabItem.Header>
 				<ui:CreationWallpaperSettingsView DataContext="{Binding CreationWallpapers}" />
@@ -638,333 +609,355 @@
 
 			<TabItem>
 				<TabItem.Header>
-					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification, StringFormat='{}{0} 1'}"
+					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Tab_Notifications}"
 							   Style="{DynamicResource TabitemStyleKey}" />
 				</TabItem.Header>
 
-				<ScrollViewer HorizontalScrollBarVisibility="Disabled"
-							  VerticalScrollBarVisibility="Auto">
-					<StackPanel Margin="16,0,16,16"
-								Focusable="True">
-						<Grid Margin="0,-8,0,0">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="210" />
-								<ColumnDefinition Width="32" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_MultipleDisplays}"
+				<DockPanel>
+					<!-- The preview stays in view while the settings above it scroll. Its root is a Canvas,
+						 which has no size of its own, so the size is given here. -->
+					<Border DockPanel.Dock="Bottom"
+							Width="480"
+							Height="270"
+							Margin="16,12,16,16"
+							HorizontalAlignment="Left">
+						<ui:NotificationPreview />
+					</Border>
+					<ScrollViewer HorizontalScrollBarVisibility="Disabled"
+								  VerticalScrollBarVisibility="Auto">
+						<StackPanel Margin="16,0,16,0"
+									Focusable="True">
+							<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_WhenToShow}"
 									   Style="{DynamicResource HeaderStyleKey}" />
-							<TextBlock Grid.Column="2"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-						</Grid>
-						<StackPanel Margin="8,0,0,0">
+							<StackPanel Margin="8,0,0,0">
+								<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=NotificationWhenSwitchedDesktop.Value, Mode=TwoWay}">
+									<TextBlock>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Display, Mode=OneWay}" />
+									</TextBlock>
+								</CheckBox>
+								<TextBlock Margin="21,0,0,0">
+									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Display_Duration, Mode=OneWay}" />
+									<InlineUIContainer>
+										<metro:PromptTextBox Text="{Binding Source={x:Static serialization:Settings.General}, Path=NotificationDuration.Value, Mode=TwoWay}"
+															 Prompt=""
+															 Width="60"
+															 Margin="2,2,2,-7"
+															 IsEnabled="{Binding Source={x:Static serialization:Settings.General}, Path=NotificationWhenSwitchedDesktop.Value, Mode=TwoWay}" />
+									</InlineUIContainer>
+									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Display_Duration_Milliseconds, Mode=OneWay}" />
+								</TextBlock>
+							</StackPanel>
+							<StackPanel Margin="8,8,0,0">
+								<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=AlwaysShowDesktopNotification.Value, Mode=TwoWay}">
+									<TextBlock>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_AlwaysShowDesktop, Mode=OneWay}" />
+									</TextBlock>
+								</CheckBox>
+							</StackPanel>
+							<Border Height="8" />
+
 							<Grid>
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="210" />
 									<ColumnDefinition Width="32" />
 									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
-								<metro:PromptComboBox Grid.Column="0"
-													  ItemsSource="{Binding Displays}"
-													  DisplayMemberPath="Display"
-													  SelectedValuePath="Value"
-													  SelectedValue="{Binding Display, Mode=TwoWay}"
-													  Prompt=""
-													  IsReadOnly="True"
-													  IsEnabled="{Binding IsDisplayEnabled}"
-													  MinWidth="200"
-													  Margin="1,0,0,0"
-													  HorizontalAlignment="Left" />
+								<TextBlock Grid.Column="0"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_MultipleDisplays}"
+										   Style="{DynamicResource HeaderStyleKey}" />
 								<TextBlock Grid.Column="2"
-										   Margin="1,0,0,0">
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Width, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationMinWidth, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Width_SimpleMode, StringFormat=({0}, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding SimpleNotificationMinWidth, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Width_PinWindow, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding PinWindowMinWidth, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,-2,-7" />
-									</InlineUIContainer>
-									<Run Text=") " />
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Height, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationMinHeight, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-								</TextBlock>
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize}"
+										   Style="{DynamicResource HeaderStyleKey}" />
 							</Grid>
-						</StackPanel>
-						<Border Height="8" />
-
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="210" />
-								<ColumnDefinition Width="32" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowPlacement}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-							<TextBlock Grid.Column="2"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowOffset}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-						</Grid>
-						<StackPanel Margin="8,0,0,0">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="210" />
-									<ColumnDefinition Width="32" />
-									<ColumnDefinition Width="Auto" />
-								</Grid.ColumnDefinitions>
-								<metro:PromptComboBox Grid.Column="0"
-													  ItemsSource="{Binding Placements}"
-													  DisplayMemberPath="Display"
-													  SelectedValuePath="Value"
-													  SelectedValue="{Binding Placement, Mode=TwoWay}"
-													  Prompt=""
-													  IsReadOnly="True"
-													  MinWidth="200"
-													  Margin="1,0,0,0"
-													  HorizontalAlignment="Left" />
-								<TextBlock Grid.Column="2" VerticalAlignment="Top"
-										   Margin="1,0,0,0">
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowOffset_SwitchDesktop, Mode=OneWay}" />
-									<InlineUIContainer>
-										<Border Width="2" />
-									</InlineUIContainer>
-									<Run Text="X" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationOffsetX, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-									<Run Text="Y" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationOffsetY, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,10,-7" />
-									</InlineUIContainer>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowOffset_PinWindow, Mode=OneWay}" />
-									<InlineUIContainer>
-										<Border Width="2" />
-									</InlineUIContainer>
-									<Run Text="X" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding PinWindowOffsetX, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-									<Run Text="Y" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding PinWindowOffsetY, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,-2,-7" />
-									</InlineUIContainer>
-								</TextBlock>
-							</Grid>
-						</StackPanel>
-						<Border Height="8" />
-
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="210" />
-								<ColumnDefinition Width="32" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowStyle}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-							<TextBlock Grid.Column="2"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Others}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-						</Grid>
-						<StackPanel Margin="8,0,0,0">
-							<Grid>
-								<Grid.ColumnDefinitions>
-									<ColumnDefinition Width="210" />
-									<ColumnDefinition Width="32" />
-									<ColumnDefinition Width="Auto" />
-								</Grid.ColumnDefinitions>
-								<StackPanel Grid.Column="0"
-											Margin="1,0,0,0"
-											VerticalAlignment="Top">
-									<metro:PromptComboBox ItemsSource="{Binding NotificationWindowStyles}"
+							<StackPanel Margin="8,0,0,0">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="210" />
+										<ColumnDefinition Width="32" />
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+									<metro:PromptComboBox Grid.Column="0"
+														  ItemsSource="{Binding Displays}"
 														  DisplayMemberPath="Display"
 														  SelectedValuePath="Value"
-														  SelectedValue="{Binding NotificationWindowStyle, Mode=TwoWay}"
+														  SelectedValue="{Binding Display, Mode=TwoWay}"
+														  Prompt=""
+														  IsReadOnly="True"
+														  IsEnabled="{Binding IsDisplayEnabled}"
+														  MinWidth="200"
+														  Margin="1,0,0,0"
+														  HorizontalAlignment="Left" />
+									<TextBlock Grid.Column="2"
+											   Margin="1,0,0,0">
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Width, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationMinWidth, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Width_SimpleMode, StringFormat=({0}, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding SimpleNotificationMinWidth, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Width_PinWindow, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding PinWindowMinWidth, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,-2,-7" />
+										</InlineUIContainer>
+										<Run Text=") " />
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowMinSize_Height, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationMinHeight, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+									</TextBlock>
+								</Grid>
+							</StackPanel>
+							<Border Height="8" />
+
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="210" />
+									<ColumnDefinition Width="32" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowPlacement}"
+										   Style="{DynamicResource HeaderStyleKey}" />
+								<TextBlock Grid.Column="2"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowOffset}"
+										   Style="{DynamicResource HeaderStyleKey}" />
+							</Grid>
+							<StackPanel Margin="8,0,0,0">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="210" />
+										<ColumnDefinition Width="32" />
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+									<metro:PromptComboBox Grid.Column="0"
+														  ItemsSource="{Binding Placements}"
+														  DisplayMemberPath="Display"
+														  SelectedValuePath="Value"
+														  SelectedValue="{Binding Placement, Mode=TwoWay}"
 														  Prompt=""
 														  IsReadOnly="True"
 														  MinWidth="200"
-														  Margin="0"
-														  VerticalAlignment="Top"
+														  Margin="1,0,0,0"
 														  HorizontalAlignment="Left" />
-									<metro:PromptComboBox ItemsSource="{Binding NotificationCornerStyles}"
-														  DisplayMemberPath="Display"
-														  SelectedValuePath="Value"
-														  SelectedValue="{Binding NotificationCornerStyle, Mode=TwoWay}"
-														  Prompt=""
-														  IsReadOnly="True"
-														  IsEnabled="{Binding IsWindows11OrLater}"
-														  MinWidth="200"
-														  Margin="0,4,0,0"
-														  VerticalAlignment="Top"
-														  HorizontalAlignment="Left" />
-								</StackPanel>
-								<StackPanel Grid.Column="2"
-											Margin="1,0,0,0"
-											VerticalAlignment="Top">
-									<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=SimpleNotification.Value, Mode=TwoWay}">
-										<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_SimpleMode}" />
-									</CheckBox>
-									<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=UseDesktopName.Value, Mode=TwoWay}">
-										<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_DesktopNames_UseDesktopName}" />
-									</CheckBox>
-								</StackPanel>
-							</Grid>
-						</StackPanel>
-						<Border Height="32" />
+									<TextBlock Grid.Column="2" VerticalAlignment="Top"
+											   Margin="1,0,0,0">
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowOffset_SwitchDesktop, Mode=OneWay}" />
+										<InlineUIContainer>
+											<Border Width="2" />
+										</InlineUIContainer>
+										<Run Text="X" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationOffsetX, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+										<Run Text="Y" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationOffsetY, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,10,-7" />
+										</InlineUIContainer>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowOffset_PinWindow, Mode=OneWay}" />
+										<InlineUIContainer>
+											<Border Width="2" />
+										</InlineUIContainer>
+										<Run Text="X" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding PinWindowOffsetX, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+										<Run Text="Y" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding PinWindowOffsetY, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,-2,-7" />
+										</InlineUIContainer>
+									</TextBlock>
+								</Grid>
+							</StackPanel>
+							<Border Height="8" />
 
-						<ui:NotificationPreview />
-					</StackPanel>
-				</ScrollViewer>
-			</TabItem>
-
-			<TabItem>
-				<TabItem.Header>
-					<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification, StringFormat='{}{0} 2'}"
-							   Style="{DynamicResource TabitemStyleKey}" />
-				</TabItem.Header>
-
-				<ScrollViewer HorizontalScrollBarVisibility="Disabled"
-							  VerticalScrollBarVisibility="Auto">
-					<StackPanel Margin="16,0,16,16"
-								Focusable="True">
-						<Grid Margin="0,-8,0,0">
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="210" />
-								<ColumnDefinition Width="32" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationTextAlignment}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-							<TextBlock Grid.Column="2"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-						</Grid>
-						<StackPanel Margin="8,0,0,0">
 							<Grid>
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="210" />
 									<ColumnDefinition Width="32" />
 									<ColumnDefinition Width="Auto" />
 								</Grid.ColumnDefinitions>
-								<TextBlock Grid.Column="0" VerticalAlignment="Top"
-										   Margin="1,0,0,0">
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationTextAlignment_Header, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptComboBox ItemsSource="{Binding NotificationTextAlignments}"
-															  DisplayMemberPath="Display"
-															  SelectedValuePath="Value"
-															  SelectedValue="{Binding NotificationHeaderAlignment, Mode=TwoWay}"
-															  Prompt=""
-															  IsReadOnly="True"
-															  MinWidth="60"
-															  Margin="2,0,2,-7"
-															  HorizontalAlignment="Left" />
-									</InlineUIContainer>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationTextAlignment_Body, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptComboBox ItemsSource="{Binding NotificationTextAlignments}"
-															  DisplayMemberPath="Display"
-															  SelectedValuePath="Value"
-															  SelectedValue="{Binding NotificationBodyAlignment, Mode=TwoWay}"
-															  Prompt=""
-															  IsReadOnly="True"
-															  MinWidth="60"
-															  Margin="2,0,2,-7"
-															  HorizontalAlignment="Left" />
-									</InlineUIContainer>
-								</TextBlock>
-								<TextBlock Grid.Column="2" VerticalAlignment="Top"
-										   Margin="1,0,0,0">
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize_Header, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationHeaderFontSize, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize_Body, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationBodyFontSize, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-									<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize_LineSpacing, Mode=OneWay}" />
-									<InlineUIContainer>
-										<metro:PromptTextBox Text="{Binding NotificationLineSpacing, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
-															 Prompt=""
-															 Width="34"
-															 Margin="2,0,2,-7" />
-									</InlineUIContainer>
-								</TextBlock>
+								<TextBlock Grid.Column="0"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationWindowStyle}"
+										   Style="{DynamicResource HeaderStyleKey}" />
+								<TextBlock Grid.Column="2"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_Others}"
+										   Style="{DynamicResource HeaderStyleKey}" />
 							</Grid>
-						</StackPanel>
-						<Border Height="8" />
+							<StackPanel Margin="8,0,0,0">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="210" />
+										<ColumnDefinition Width="32" />
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+									<StackPanel Grid.Column="0"
+												Margin="1,0,0,0"
+												VerticalAlignment="Top">
+										<metro:PromptComboBox ItemsSource="{Binding NotificationWindowStyles}"
+															  DisplayMemberPath="Display"
+															  SelectedValuePath="Value"
+															  SelectedValue="{Binding NotificationWindowStyle, Mode=TwoWay}"
+															  Prompt=""
+															  IsReadOnly="True"
+															  MinWidth="200"
+															  Margin="0"
+															  VerticalAlignment="Top"
+															  HorizontalAlignment="Left" />
+										<metro:PromptComboBox ItemsSource="{Binding NotificationCornerStyles}"
+															  DisplayMemberPath="Display"
+															  SelectedValuePath="Value"
+															  SelectedValue="{Binding NotificationCornerStyle, Mode=TwoWay}"
+															  Prompt=""
+															  IsReadOnly="True"
+															  IsEnabled="{Binding IsWindows11OrLater}"
+															  MinWidth="200"
+															  Margin="0,4,0,0"
+															  VerticalAlignment="Top"
+															  HorizontalAlignment="Left" />
+									</StackPanel>
+									<StackPanel Grid.Column="2"
+												Margin="1,0,0,0"
+												VerticalAlignment="Top">
+										<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=SimpleNotification.Value, Mode=TwoWay}">
+											<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_Notification_SimpleMode}" />
+										</CheckBox>
+										<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=UseDesktopName.Value, Mode=TwoWay}">
+											<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_DesktopNames_UseDesktopName}" />
+										</CheckBox>
+									</StackPanel>
+								</Grid>
+							</StackPanel>
+							<Border Height="8" />
 
-						<Grid>
-							<Grid.ColumnDefinitions>
-								<ColumnDefinition Width="210" />
-								<ColumnDefinition Width="32" />
-								<ColumnDefinition Width="Auto" />
-							</Grid.ColumnDefinitions>
-							<TextBlock Grid.Column="0"
-									   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontFamily}"
-									   Style="{DynamicResource HeaderStyleKey}" />
-						</Grid>
-						<StackPanel Margin="8,0,0,0">
-								<metro:PromptTextBox Text="{Binding NotificationFontFamily, Mode=TwoWay}"
-													 MinWidth="462"
-													 MaxWidth="640"
-													 Margin="1,0,0,0"
-													 HorizontalAlignment="Left"
-													 VerticalAlignment="Top">
-									<metro:PromptTextBox.Prompt>
-										<MultiBinding StringFormat="{}{0} ({1}) ">
-											<Binding Source="{x:Static serialization:Settings.General}" Path="NotificationFontFamilyDefaultValue" />
-											<Binding Source="{x:Static services:ResourceService.Current}" Path="Resources.Common_Default" />
-										</MultiBinding>
-									</metro:PromptTextBox.Prompt>
-								</metro:PromptTextBox>
-						</StackPanel>
-						<Border Height="128" />
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="210" />
+									<ColumnDefinition Width="32" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationTextAlignment}"
+										   Style="{DynamicResource HeaderStyleKey}" />
+								<TextBlock Grid.Column="2"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize}"
+										   Style="{DynamicResource HeaderStyleKey}" />
+							</Grid>
+							<StackPanel Margin="8,0,0,0">
+								<Grid>
+									<Grid.ColumnDefinitions>
+										<ColumnDefinition Width="210" />
+										<ColumnDefinition Width="32" />
+										<ColumnDefinition Width="Auto" />
+									</Grid.ColumnDefinitions>
+									<TextBlock Grid.Column="0" VerticalAlignment="Top"
+											   Margin="1,0,0,0">
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationTextAlignment_Header, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptComboBox ItemsSource="{Binding NotificationTextAlignments}"
+																  DisplayMemberPath="Display"
+																  SelectedValuePath="Value"
+																  SelectedValue="{Binding NotificationHeaderAlignment, Mode=TwoWay}"
+																  Prompt=""
+																  IsReadOnly="True"
+																  MinWidth="60"
+																  Margin="2,0,2,-7"
+																  HorizontalAlignment="Left" />
+										</InlineUIContainer>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationTextAlignment_Body, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptComboBox ItemsSource="{Binding NotificationTextAlignments}"
+																  DisplayMemberPath="Display"
+																  SelectedValuePath="Value"
+																  SelectedValue="{Binding NotificationBodyAlignment, Mode=TwoWay}"
+																  Prompt=""
+																  IsReadOnly="True"
+																  MinWidth="60"
+																  Margin="2,0,2,-7"
+																  HorizontalAlignment="Left" />
+										</InlineUIContainer>
+									</TextBlock>
+									<TextBlock Grid.Column="2" VerticalAlignment="Top"
+											   Margin="1,0,0,0">
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize_Header, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationHeaderFontSize, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize_Body, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationBodyFontSize, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+										<Run Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontSize_LineSpacing, Mode=OneWay}" />
+										<InlineUIContainer>
+											<metro:PromptTextBox Text="{Binding NotificationLineSpacing, Mode=TwoWay, Converter={StaticResource NullableIntToStringConverter}}"
+																 Prompt=""
+																 Width="34"
+																 Margin="2,0,2,-7" />
+										</InlineUIContainer>
+									</TextBlock>
+								</Grid>
+							</StackPanel>
+							<Border Height="8" />
 
-						<ui:NotificationPreview />
-					</StackPanel>
-				</ScrollViewer>
+							<Grid>
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="210" />
+									<ColumnDefinition Width="32" />
+									<ColumnDefinition Width="Auto" />
+								</Grid.ColumnDefinitions>
+								<TextBlock Grid.Column="0"
+										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_NotificationFontFamily}"
+										   Style="{DynamicResource HeaderStyleKey}" />
+							</Grid>
+							<StackPanel Margin="8,0,0,0">
+									<metro:PromptTextBox Text="{Binding NotificationFontFamily, Mode=TwoWay}"
+														 MinWidth="462"
+														 MaxWidth="640"
+														 Margin="1,0,0,0"
+														 HorizontalAlignment="Left"
+														 VerticalAlignment="Top">
+										<metro:PromptTextBox.Prompt>
+											<MultiBinding StringFormat="{}{0} ({1}) ">
+												<Binding Source="{x:Static serialization:Settings.General}" Path="NotificationFontFamilyDefaultValue" />
+												<Binding Source="{x:Static services:ResourceService.Current}" Path="Resources.Common_Default" />
+											</MultiBinding>
+										</metro:PromptTextBox.Prompt>
+									</metro:PromptTextBox>
+							</StackPanel>
+						</StackPanel>
+					</ScrollViewer>
+				</DockPanel>
 			</TabItem>
 
 			<TabItem>

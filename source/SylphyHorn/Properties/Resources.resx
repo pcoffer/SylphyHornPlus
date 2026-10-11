@@ -189,6 +189,18 @@
   <data name="Settings_Desktop" xml:space="preserve">
     <value>Desktop</value>
   </data>
+  <data name="Settings_Tab_Desktops" xml:space="preserve">
+    <value>Desktops</value>
+  </data>
+  <data name="Settings_Tab_AppPlacement" xml:space="preserve">
+    <value>App placement</value>
+  </data>
+  <data name="Settings_Tab_AutoClose" xml:space="preserve">
+    <value>Auto-close</value>
+  </data>
+  <data name="Settings_Tab_NewDesktopWallpaper" xml:space="preserve">
+    <value>New-desktop wallpaper</value>
+  </data>
   <data name="Settings_DesktopNames" xml:space="preserve">
     <value>Desktop names</value>
   </data>
@@ -354,6 +366,12 @@ Applies when you switch desktops, send a window to the next desktop, or reorder 
   </data>
   <data name="Settings_Notification" xml:space="preserve">
     <value>Notification</value>
+  </data>
+  <data name="Settings_Tab_Notifications" xml:space="preserve">
+    <value>Notifications</value>
+  </data>
+  <data name="Settings_Notification_WhenToShow" xml:space="preserve">
+    <value>When to show</value>
   </data>
   <data name="Settings_NotificationCornerStyle" xml:space="preserve">
     <value>Notification corner style</value>

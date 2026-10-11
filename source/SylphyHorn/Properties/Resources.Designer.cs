@@ -655,6 +655,42 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Desktops.
+        /// </summary>
+        public static string Settings_Tab_Desktops {
+            get {
+                return ResourceManager.GetString("Settings_Tab_Desktops", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App placement.
+        /// </summary>
+        public static string Settings_Tab_AppPlacement {
+            get {
+                return ResourceManager.GetString("Settings_Tab_AppPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto-close.
+        /// </summary>
+        public static string Settings_Tab_AutoClose {
+            get {
+                return ResourceManager.GetString("Settings_Tab_AutoClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New-desktop wallpaper.
+        /// </summary>
+        public static string Settings_Tab_NewDesktopWallpaper {
+            get {
+                return ResourceManager.GetString("Settings_Tab_NewDesktopWallpaper", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Click to switch to this desktop に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_Desktop_ClickToSwitchDesktop {
@@ -1146,6 +1182,24 @@ namespace SylphyHorn.Properties {
         public static string Settings_Notification {
             get {
                 return ResourceManager.GetString("Settings_Notification", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string Settings_Tab_Notifications {
+            get {
+                return ResourceManager.GetString("Settings_Tab_Notifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to When to show.
+        /// </summary>
+        public static string Settings_Notification_WhenToShow {
+            get {
+                return ResourceManager.GetString("Settings_Notification_WhenToShow", resourceCulture);
             }
         }
         
