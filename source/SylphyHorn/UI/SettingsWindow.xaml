@@ -161,7 +161,9 @@
 								   Style="{DynamicResource HeaderStyleKey}"
 								   Margin="0,0,0,8" />
 						<StackPanel Margin="8,0,0,0">
-							<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=LoopDesktop.Value, Mode=TwoWay}">
+							<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=LoopDesktop.Value, Mode=TwoWay}"
+									  ToolTip="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_DesktopSwitching_LoopDetail}"
+									  ToolTipService.ShowDuration="30000">
 								<TextBlock Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_DesktopSwitching_Loop}" />
 							</CheckBox>
 							<CheckBox IsChecked="{Binding Source={x:Static serialization:Settings.General}, Path=OverrideWindowsDefaultKeyCombination.Value, Mode=TwoWay}">
@@ -987,12 +989,14 @@
 							</Grid.ColumnDefinitions>
 							<Grid>
 								<Grid.RowDefinitions>
-									<RowDefinition Height="2*" />
-									<RowDefinition Height="2*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
 								</Grid.RowDefinitions>
 								<TextBlock Grid.Row="0"
 										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_TaskView_ShowTaskView}" />
-								<TextBlock Grid.Row="1"
+								<TextBlock Grid.Row="2"
 										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_TaskView_ShowWindowSwitch}" />
 							</Grid>
 							<UniformGrid Grid.Column="2"
@@ -1022,12 +1026,14 @@
 							</Grid.ColumnDefinitions>
 							<Grid>
 								<Grid.RowDefinitions>
-									<RowDefinition Height="2*" />
-									<RowDefinition Height="2*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
 								</Grid.RowDefinitions>
 								<TextBlock Grid.Row="0"
 										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_SwitchAdjacentDesktop_SwitchLeft}" />
-								<TextBlock Grid.Row="1"
+								<TextBlock Grid.Row="2"
 										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_SwitchAdjacentDesktop_SwitchRight}" />
 							</Grid>
 							<UniformGrid Grid.Column="2"
@@ -1147,12 +1153,13 @@
 							</Grid.ColumnDefinitions>
 							<Grid>
 								<Grid.RowDefinitions>
-									<RowDefinition Height="2*" />
+									<RowDefinition Height="*" />
+									<RowDefinition Height="*" />
 									<RowDefinition Height="*" />
 								</Grid.RowDefinitions>
 								<TextBlock Grid.Row="0"
 										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_CloseDesktop_CloseAndSwitchLeft}" />
-								<TextBlock Grid.Row="1"
+								<TextBlock Grid.Row="2"
 										   Text="{Binding Source={x:Static services:ResourceService.Current}, Path=Resources.Settings_CloseDesktop_CloseAndSwitchRight}" />
 							</Grid>
 							<UniformGrid Grid.Column="2"

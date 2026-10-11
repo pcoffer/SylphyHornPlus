@@ -120,6 +120,9 @@
   <data name="Common_Default" xml:space="preserve">
     <value>default</value>
   </data>
+  <data name="Common_ClickToSet" xml:space="preserve">
+    <value>Click to set</value>
+  </data>
   <data name="Common_ProvidedByWinows" xml:space="preserve">
     <value>provided by Windows</value>
   </data>
@@ -197,6 +200,10 @@
   </data>
   <data name="Settings_DesktopSwitching_Loop" xml:space="preserve">
     <value>Loop virtual desktops</value>
+  </data>
+  <data name="Settings_DesktopSwitching_LoopDetail" xml:space="preserve">
+    <value>Going left from the first desktop goes to the last one, and going right from the last goes to the first.
+Applies when you switch desktops, send a window to the next desktop, or reorder desktops.</value>
   </data>
   <data name="Settings_DesktopSwitching_OverrideOS" xml:space="preserve">
     <value>Override OS default key combination (Ctrl+Win+Left and Right)</value>

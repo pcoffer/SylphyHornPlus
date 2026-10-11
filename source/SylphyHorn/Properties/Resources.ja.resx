@@ -120,6 +120,9 @@
   <data name="Common_Default" xml:space="preserve">
     <value>既定値</value>
   </data>
+  <data name="Common_ClickToSet" xml:space="preserve">
+    <value>クリックして設定</value>
+  </data>
   <data name="Common_ProvidedByWinows" xml:space="preserve">
     <value>Windows が提供</value>
   </data>
@@ -197,6 +200,10 @@
   </data>
   <data name="Settings_DesktopSwitching_Loop" xml:space="preserve">
     <value>仮想デスクトップをループさせる</value>
+  </data>
+  <data name="Settings_DesktopSwitching_LoopDetail" xml:space="preserve">
+    <value>最初のデスクトップから左へ進むと最後のデスクトップに、最後のデスクトップから右へ進むと最初のデスクトップに移動します。
+デスクトップを切り替えるとき、ウィンドウを隣のデスクトップへ送るとき、デスクトップを並べ替えるときに適用されます。</value>
   </data>
   <data name="Settings_DesktopSwitching_OverrideOS" xml:space="preserve">
     <value>OS 既定のキー コンビネーションを上書きする (Ctrl+Win+Left および Right)</value>

@@ -61,6 +61,15 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Click to set.
+        /// </summary>
+        public static string Common_ClickToSet {
+            get {
+                return ResourceManager.GetString("Common_ClickToSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   default に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Common_Default {
@@ -777,6 +786,15 @@ namespace SylphyHorn.Properties {
         public static string Settings_DesktopSwitching_Loop {
             get {
                 return ResourceManager.GetString("Settings_DesktopSwitching_Loop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Going left from the first desktop goes to the last one, and going right from the last goes to the first..
+        /// </summary>
+        public static string Settings_DesktopSwitching_LoopDetail {
+            get {
+                return ResourceManager.GetString("Settings_DesktopSwitching_LoopDetail", resourceCulture);
             }
         }
         

@@ -59,6 +59,18 @@ namespace SylphyHorn.UI.Controls
 
 		#endregion
 
+		#region IsEmpty dependency property
+
+		private static readonly DependencyPropertyKey IsEmptyPropertyKey =
+			DependencyProperty.RegisterReadOnly(nameof(IsEmpty), typeof(bool), typeof(MouseShortcutBox), new UIPropertyMetadata(true));
+
+		public static readonly DependencyProperty IsEmptyProperty = IsEmptyPropertyKey.DependencyProperty;
+
+		// True while no shortcut is assigned and none is being entered; the template then shows a hint.
+		public bool IsEmpty => (bool)this.GetValue(IsEmptyProperty);
+
+		#endregion
+
 		public override void OnApplyTemplate()
 		{
 			base.OnApplyTemplate();
@@ -158,6 +170,10 @@ namespace SylphyHorn.UI.Controls
 					? Visibility.Collapsed
 					: Visibility.Visible;
 			}
+
+			this.SetValue(
+				IsEmptyPropertyKey,
+				currentKey.Key == VirtualKey.None && !(currentKey.ModifiersInternal ?? currentKey.Modifiers ?? Enumerable.Empty<VirtualKey>()).Any());
 		}
 
 		private void UpdateKeyCode(MouseEventArgs e)
