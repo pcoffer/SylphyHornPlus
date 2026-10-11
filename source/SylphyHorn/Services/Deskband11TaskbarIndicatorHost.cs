@@ -46,6 +46,9 @@ namespace SylphyHorn.Services
 			{
 				Placement = TaskbarContentPlacement.BeforeNotificationArea,
 				AnimateLayoutChanges = false,
+				// Each refresh scans the taskbar with UI Automation; the default 500 ms costs about 5% of a core.
+				// Text changes refresh the layout themselves, so this only delays following the tray area.
+				LayoutRefreshInterval = TimeSpan.FromSeconds(2),
 			};
 			var host = new TaskbarContentHost(window, window.ContentRoot, options);
 			host.TaskbarWindowRecreationRequired += this.OnTaskbarWindowRecreationRequired;

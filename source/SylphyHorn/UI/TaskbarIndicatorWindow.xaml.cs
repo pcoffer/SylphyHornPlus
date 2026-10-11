@@ -31,6 +31,11 @@ namespace SylphyHorn.UI
 			// The handle is created before the window is shown, so there is no PresentationSource yet.
 			var handle = new WindowInteropHelper(this).Handle;
 
+			// Hardware rendering of this window, once it is hosted inside the taskbar, sends WPF's render
+			// thread into an endless swap chain rebuild that leaks memory. A line of text needs no GPU.
+			var source = HwndSource.FromHwnd(handle);
+			if (source?.CompositionTarget != null) source.CompositionTarget.RenderMode = RenderMode.SoftwareOnly;
+
 			// The indicator is display-only: it must not take focus or swallow taskbar clicks.
 			var style = User32.GetWindowLongEx(handle);
 			style |= WindowExStyles.WS_EX_TOOLWINDOW | WindowExStyles.WS_EX_NOACTIVATE | WindowExStyles.WS_EX_TRANSPARENT;
