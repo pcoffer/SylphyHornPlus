@@ -4,7 +4,7 @@
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
 		<AssemblyName>sylphyhorn-cli</AssemblyName>
-		<Company>hwtnb.net</Company>
+		<Company>pcoffer</Company>
 		<Product>SylphyHornPlus</Product>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 		<RuntimeIdentifiers>win-x86;win-x64;win-arm64</RuntimeIdentifiers>

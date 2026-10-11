@@ -1699,7 +1699,7 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Automaticaly start at logon に類似しているローカライズされた文字列を検索します。
+        ///   Automatically start at logon に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_Startup_Automaticaly {
             get {
@@ -1708,7 +1708,7 @@ namespace SylphyHorn.Properties {
         }
         
         /// <summary>
-        ///   Automaticaly start as administrator at logon (from Task Scheduler) に類似しているローカライズされた文字列を検索します。
+        ///   Automatically start as administrator at logon (from Task Scheduler) に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string Settings_Startup_Automaticaly_As_Admin {
             get {

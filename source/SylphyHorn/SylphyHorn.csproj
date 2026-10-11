@@ -8,7 +8,7 @@
     <Product>SylphyHornPlus</Product>
     <Version>4.0.0</Version>
     <Authors>hwtnb</Authors>
-    <Company>hwtnb.net</Company>
+    <Company>pcoffer</Company>
     <Copyright>Copyright © 2015 - 2018 Manato KAMEYA, 2021 - 2022 hwtnb, 2026 Patrick Coffer</Copyright>
     <Description>Virtual Desktop Tools for Windows 11 and 10</Description>
     <AssemblyTitle>SylphyHornPlus</AssemblyTitle>
@@ -30,8 +30,8 @@
 
   <ItemGroup>
     <AssemblyMetadata Include="ExtraVersion" Value="beta.17" />
-    <AssemblyMetadata Include="OriginalCompany" Value="grabacr.net" />
-    <AssemblyMetadata Include="OriginalProduct" Value="SylphyHorn" />
+    <AssemblyMetadata Include="OriginalCompany" Value="hwtnb.net" />
+    <AssemblyMetadata Include="OriginalProduct" Value="SylphyHornPlus" />
   </ItemGroup>
 
   <ItemGroup>
