@@ -1,5 +1,37 @@
 # SylphyHornPlus
 
+## This fork: the desktop name in the taskbar
+
+This is a fork of [hwtnb/SylphyHornPlus](https://github.com/hwtnb/SylphyHornPlus).
+It adds one thing: the number and name of the current virtual desktop,
+always visible in the Windows 11 taskbar.
+
+![The indicator "1 · SylphyHornPlus fork" to the left of the Start button](resources/screenshots/taskbar-indicator.png)
+
+* The text follows the desktop as you switch, rename, reorder, create or remove desktops.
+  A desktop without a name is shown as `Desktop 3`.
+* The **Taskbar** tab in Settings chooses where it sits (left of the Start button,
+  left of the notification area, the left edge, or automatic) and its font, size and color.
+* It uses the standard Windows 11 taskbar; no shell modification is needed.
+* It is only in the .NET build, not the .NET Framework 4.8 build, and only on Windows 11.
+* Only the primary monitor's taskbar gets the indicator.
+
+There are no releases of this fork. The WinGet and ZIP instructions below install
+the upstream app, which does not have the indicator. To get it, build this branch
+with the .NET SDK 10.0.401 (the version pinned in `global.json`):
+
+```powershell
+git clone --recurse-submodules --branch feature/taskbar-desktop-indicator https://github.com/pcoffer/SylphyHornPlus
+cd SylphyHornPlus
+dotnet build source/SylphyHorn/SylphyHorn.csproj -c Release -f net10.0-windows10.0.26100.0
+source\SylphyHorn\bin\Release\net10.0-windows10.0.26100.0\SylphyHorn.exe
+```
+
+Taskbar hosting is done by [Deskband11Lib](https://github.com/airtaxi/Deskband11Lib) (MIT License).
+
+The rest of this page is upstream's README.
+
+---
 SylphyHornPlus is a virtual desktop enhancement tool for Windows 11 and 10.
 It provides global hotkeys, desktop-switch notifications, per-desktop
 wallpapers, mouse gestures, and tools for managing virtual desktops.
