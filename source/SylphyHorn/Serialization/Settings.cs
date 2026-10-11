@@ -13,5 +13,6 @@ namespace SylphyHorn.Serialization
 		public static MouseShortcutSettings MouseShortcut { get; } = new MouseShortcutSettings(LocalSettingsProvider.Instance);
 		public static AppPlacementSettings AppPlacement { get; } = new AppPlacementSettings(LocalSettingsProvider.Instance);
 		public static TaskbarSettings Taskbar { get; } = new TaskbarSettings(LocalSettingsProvider.Instance);
+		public static WindowPlacementSettings WindowPlacement { get; } = new WindowPlacementSettings(LocalSettingsProvider.Instance);
 	}
 }

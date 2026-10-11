@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Interop;
 using MetroRadiance.Interop.Win32;
 using SylphyHorn.Interop;
+using SylphyHorn.Serialization;
 using SylphyHorn.UI.Bindings;
 using WindowsDesktop;
 using MONITORINFOEX = SylphyHorn.Interop.MONITORINFOEX;
@@ -17,6 +18,10 @@ namespace SylphyHorn.UI
 		public SettingsWindow()
 		{
 			this.InitializeComponent();
+
+			// MetroWindow saves the placement on close and restores it on open through this store.
+			this.WindowSettings = new SettingsWindowPlacementStore(Settings.WindowPlacement);
+			this.IsRestoringWindowPlacement = true;
 		}
 
 		protected override void OnSourceInitialized(EventArgs e)
