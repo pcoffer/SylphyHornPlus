@@ -17,11 +17,11 @@ always visible in the Windows 11 taskbar.
 * Only the primary monitor's taskbar gets the indicator.
 
 There are no releases of this fork. The WinGet and ZIP instructions below install
-the upstream app, which does not have the indicator. To get it, build this branch
+the upstream app, which does not have the indicator. To get it, build from source
 with the .NET SDK 10.0.401 (the version pinned in `global.json`):
 
 ```powershell
-git clone --recurse-submodules --branch feature/taskbar-desktop-indicator https://github.com/pcoffer/SylphyHornPlus
+git clone --recurse-submodules https://github.com/pcoffer/SylphyHornPlus
 cd SylphyHornPlus
 dotnet build source/SylphyHorn/SylphyHorn.csproj -c Release -f net10.0-windows10.0.26100.0
 source\SylphyHorn\bin\Release\net10.0-windows10.0.26100.0\SylphyHorn.exe
