@@ -162,6 +162,15 @@
         "resolved": "8.4.2",
         "contentHash": "WadCzGEc2U+3e20avRLng4qNtt4zoOGWrdUISqJWrHe3/FSnrYjuM5Sb4yQb09LhkBXrrI4Zt3dLKgRMbItsrg=="
       },
+      "Deskband11Lib.Wpf": {
+        "type": "Direct",
+        "requested": "[1.4.2, )",
+        "resolved": "1.4.2",
+        "contentHash": "nnd3PE/Qpuo/NeNywn4ee7JRreLG8kdHmtm5fEvR1uskjgrx+/0mjMpZaI41NYXnwLwcVuKvv74TABWp0pLUvw==",
+        "dependencies": {
+          "Deskband11Lib.Core": "1.4.2"
+        }
+      },
       "ElementalAnnotations-Dualism": {
         "type": "Direct",
         "requested": "[1.0.2, )",
@@ -214,6 +223,14 @@
         "resolved": "2.0.0",
         "contentHash": "GbetWNcPIaXvWtanHlBqlEp2KflFrsJf8RBNXmI8Yyeft9CSGxNrcsoKWEiEzyrn7gGVQ25ZC6ep9UfWPR0Otw=="
       },
+      "Deskband11Lib.Core": {
+        "type": "Transitive",
+        "resolved": "1.4.2",
+        "contentHash": "bgdwc0ucFjy5NS0Qt6T7X17Wo2JA22dzvS3kgzwDe80pe0VuXXL37ous3XTie/KJrWwHzpRxvgMPe1gsHwZ/lw==",
+        "dependencies": {
+          "Microsoft.Windows.SDK.BuildTools": "10.0.28000.1839"
+        }
+      },
       "ElementalAnnotations-Core": {
         "type": "Transitive",
         "resolved": "1.0.1",
@@ -256,6 +273,11 @@
           "Microsoft.CodeAnalysis.Analyzers": "5.9.0-1.26328.17",
           "Microsoft.CodeAnalysis.Common": "[5.9.0]"
         }
+      },
+      "Microsoft.Windows.SDK.BuildTools": {
+        "type": "Transitive",
+        "resolved": "10.0.28000.1839",
+        "contentHash": "xPRyq2l8rBbKPOEymCGGN1+086KHsMpXz2bhP2Ha3Woo0tsqrnEXUO/iINJ5kqOvax78LtSReoAZi26rFqOdPg=="
       },
       "sylphyhorn.core": {
         "type": "Project"

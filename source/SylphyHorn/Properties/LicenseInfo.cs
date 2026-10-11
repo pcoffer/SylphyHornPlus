@@ -15,6 +15,9 @@ namespace SylphyHorn.Properties
 			new LicenseInfo("MetroRadiance"),
 			new LicenseInfo("MetroTrilithon"),
 			new LicenseInfo("TaskScheduler"),
+#if !NETFRAMEWORK
+			new LicenseInfo("Deskband11Lib"),
+#endif
 		};
 
 		public string ProductName { get; }

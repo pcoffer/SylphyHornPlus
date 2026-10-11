@@ -318,6 +318,21 @@ namespace SylphyHorn
 		}
 
 		private static SettingsWindowViewModel OpenSettingsViewModel() => SettingsWindow.Instance?.DataContext as SettingsWindowViewModel;
+
+		private void CreateTaskbarIndicator(DesktopTransitionRuntime runtime)
+		{
+			if (!OperatingSystem.IsWindowsVersionAtLeast(10, 0, 22000)) return;
+
+			// The taskbar indicator is optional: failing to host it must not stop the application.
+			try
+			{
+				new DesktopIndicatorService(new Deskband11TaskbarIndicatorHost()).AddTo(this._disposable).BindDesktopRuntime(runtime);
+			}
+			catch (Exception ex)
+			{
+				LoggingService.Instance.Register(ex);
+			}
+		}
 #endif
 
 		public TaskTrayBaloon CreateFirstTimeBaloon()
@@ -385,6 +400,9 @@ namespace SylphyHorn
 				this._desktopRuntime = runtime;
 				runtime.AddTo(this._disposable);
 				this.CreateTaskTrayIcon().BindDesktopRuntime(runtime);
+#if !NETFRAMEWORK
+				this.CreateTaskbarIndicator(runtime);
+#endif
 				NotificationService.Instance.BindDesktopRuntime(runtime, Application.Current.Dispatcher);
 				WallpaperService.Instance.BindDesktopRuntime(runtime);
 				SettingsService.StretchShortcutListsTo(runtime.State.Order.Count);

@@ -126,6 +126,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include=".licenses\CommunityToolkit.Mvvm.txt" />
+    <EmbeddedResource Include=".licenses\Deskband11Lib.txt" />
     <EmbeddedResource Include=".licenses\MetroTrilithon.txt" />
     <EmbeddedResource Include=".licenses\MetroRadiance.txt" />
     <EmbeddedResource Include=".licenses\VirtualDesktop.txt" />
@@ -186,6 +187,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="Tavis.UriTemplates" Version="2.0.0" Condition="'$(TargetFramework)' == 'net10.0-windows10.0.26100.0'" />
+    <PackageReference Include="Deskband11Lib.Wpf" Version="1.4.2" Condition="'$(TargetFramework)' == 'net10.0-windows10.0.26100.0'" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
       <Version>1.1.161</Version>
     </PackageReference>
